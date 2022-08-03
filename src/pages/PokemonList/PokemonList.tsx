@@ -20,7 +20,6 @@ function PokemonList() {
         })
         .catch((e) => {
             setSearching(false);
-            console.log('here')
         })
     }, [page, searchName]);
 

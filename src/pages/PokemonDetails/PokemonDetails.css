@@ -48,7 +48,7 @@ p {
 }
 
 .statsContainer {
-    margin-bottom: 4px;
+    margin-bottom: 10px;
 }
 
 .container {
@@ -64,4 +64,12 @@ img {
     max-width:100%;
     max-height:100%;
     object-fit: contain;
+}
+
+.descriptionTitle {
+    font-weight: 550;
+}
+
+.description {
+    border-top: 1px solid black;
 }

@@ -9,6 +9,7 @@ function PokemonDetails() {
     const navigate = useNavigate();
 
     const [pokemon, setPokemon] = React.useState<PokemonInformation| undefined>(undefined);
+    const [description, setDescription] = React.useState<string| undefined>(undefined);
 
     useEffect(() => {
         fetch(`https://pokeapi.co/api/v2/pokemon/${params.pokemonName}`)
@@ -20,7 +21,19 @@ function PokemonDetails() {
                 setPokemon(response);
             }
         });
+
+        fetch(`https://pokeapi.co/api/v2/pokemon-species/${params.pokemonName}`)
+        .then((response) => response.json())
+        .then((response) => {
+            if(response?.error) {
+                navigate('/')
+            } else {
+                setDescription(response.flavor_text_entries[0].flavor_text);
+            }
+        });
+
     }, [navigate, params.pokemonName]);
+
 
     if(pokemon) {
         return (
@@ -38,7 +51,7 @@ function PokemonDetails() {
                         <h4>Abilities</h4>
                         {pokemon.abilities.map((ability) => {
                             return (
-                                <div>
+                                <div key={ability.ability.name}>
                                     <div>
                                     {ability.ability.name[0].toUpperCase() + ability.ability.name.substring(1)}
                                     </div>
@@ -50,7 +63,7 @@ function PokemonDetails() {
                         <h4>Stats</h4>
                         {pokemon.stats.map((stat) => {
                             return (
-                                <div className='statsContainer'>
+                                <div key={stat.stat.name} className='statsContainer'>
                                     <div className='name'>
                                     {stat.stat.name[0].toUpperCase() + stat.stat.name.substring(1)}
                                     </div>
@@ -66,13 +79,17 @@ function PokemonDetails() {
                         <h4>Moves</h4>
                         {pokemon.moves.map((move) => {
                             return (
-                                <div>
+                                <div key={move.move.name}>
                                     <div>{move.move.name[0].toUpperCase() + move.move.name.substring(1)}</div>
                                 </div>
                             )
                         })}
                     </div>
                 </div>
+            </div>
+            <div className='description'>
+                <p className='descriptionTitle'>Description</p>
+                <div>{description}</div>
             </div>
             </div>
             

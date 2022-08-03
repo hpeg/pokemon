@@ -1,0 +1,35 @@
+.page {
+    padding: 0 12px;
+}
+
+h2 {
+    text-align: center;
+}
+
+h3 {
+    margin: 4px 0;
+}
+
+h4 {
+    margin: 4px 0;
+}
+
+.loading {
+    text-align: center;
+}
+
+span {
+    font-weight: 600;
+}
+
+.name {
+    font-weight: 600;
+}
+
+.moves, .stats, .abilities {
+    margin: 10px 0px;
+}
+
+p {
+    margin: 0;
+}

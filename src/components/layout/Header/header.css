@@ -1,0 +1,8 @@
+header {
+    text-align: center;
+    outline: 1px solid black;
+    background-color: darkslateblue;
+    color: white;
+    padding: 1px;
+    margin-bottom: 5px;
+}

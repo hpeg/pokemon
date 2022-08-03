@@ -12,15 +12,27 @@ function PokemonList() {
     
     
     useEffect(() => {
-        fetch(`https://pokeapi.co/api/v2/pokemon/${searchName}?limit=${20}&offset=${page*20}`)
-        .then((response) => response.json())
-        .then((response) => {
-            setSearching(false);
-            setPokemon(response.results);
-        })
-        .catch((e) => {
-            setSearching(false);
-        })
+        if(searchName) {
+            fetch(`https://pokeapi.co/api/v2/pokemon`)
+            .then((response) => response.json())
+            .then((response) => {
+                setSearching(false);
+                setPokemon(response.results.filter((pokemon: PokemonListItem) => pokemon.name.includes(searchName)));
+            })
+            .catch((e) => {
+                setSearching(false);
+            })
+        } else {
+            fetch(`https://pokeapi.co/api/v2/pokemon/${searchName}?limit=${20}&offset=${page*20}`)
+            .then((response) => response.json())
+            .then((response) => {
+                setSearching(false);
+                setPokemon(response.results);
+            })
+            .catch((e) => {
+                setSearching(false);
+            })
+        }
     }, [page, searchName]);
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -58,6 +70,7 @@ function PokemonList() {
                         </div>
                     );
                 })}
+                {!searchName &&
                 <div>
                     <button disabled={page<1} onClick={() => changePage(page-1 < 0 ? 0 : page-1)}>
                         Back
@@ -65,7 +78,7 @@ function PokemonList() {
                     <button disabled={!pokemon || pokemon.length===0} onClick={() => changePage(page+1)}>
                         Next
                     </button>
-                </div>
+                </div>}
                 </div>
             )
 

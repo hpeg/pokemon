@@ -26,37 +26,13 @@ function PokemonDetails() {
         return (
             <div className='page'>
             <p><Link to='/'>Back to list</Link></p>
+            <h3 className='name'>{pokemon.name[0].toUpperCase() + pokemon.name.substring(1)}</h3>
             <div className='container'>
-                <h3 className='name'>{pokemon.name[0].toUpperCase() + pokemon.name.substring(1)}</h3>
-                <img src={pokemon.sprites.front_default} alt='Pokemon pic'/>
                 <div className='details'>
-                    <div><span>Weight: </span>{pokemon.weight}</div>
-                    <div><span>Height: </span>{pokemon.height}</div>
-                    <div className='moves'>
-                        <h4>Moves</h4>
-                        {pokemon.moves.map((move) => {
-                            return (
-                                <div>
-                                    <div>{move.move.name[0].toUpperCase() + move.move.name.substring(1)}</div>
-                                </div>
-                            )
-                        })}
-                    </div>
-                    <div className='stats'>
-                        <h4>Stats</h4>
-                        {pokemon.stats.map((stat) => {
-                            return (
-                                <div>
-                                    <div>
-                                    {stat.stat.name[0].toUpperCase() + stat.stat.name.substring(1)}
-                                    </div>
-                                    <div>
-                                        <p>{stat.base_stat}</p>
-                                        <p>{stat.effort}</p>
-                                    </div>
-                                </div>
-                            )
-                        })}
+                    <div className='size'>
+                    <img src={pokemon.sprites.front_default} alt='Pokemon pic'/>
+                        <div><span>Weight: </span>{pokemon.weight}</div>
+                        <div><span>Height: </span>{pokemon.height}</div>
                     </div>
                     <div className='abilities'>
                         <h4>Abilities</h4>
@@ -70,7 +46,32 @@ function PokemonDetails() {
                             )
                         })}
                     </div>
-
+                    <div className='stats'>
+                        <h4>Stats</h4>
+                        {pokemon.stats.map((stat) => {
+                            return (
+                                <div className='statsContainer'>
+                                    <div className='name'>
+                                    {stat.stat.name[0].toUpperCase() + stat.stat.name.substring(1)}
+                                    </div>
+                                    <div>
+                                        <p><span>Base Stat: </span>{stat.base_stat}</p>
+                                        <p><span>Effort: </span>{stat.effort}</p>
+                                    </div>
+                                </div>
+                            )
+                        })}
+                    </div>
+                    <div className='moves'>
+                        <h4>Moves</h4>
+                        {pokemon.moves.map((move) => {
+                            return (
+                                <div>
+                                    <div>{move.move.name[0].toUpperCase() + move.move.name.substring(1)}</div>
+                                </div>
+                            )
+                        })}
+                    </div>
                 </div>
             </div>
             </div>

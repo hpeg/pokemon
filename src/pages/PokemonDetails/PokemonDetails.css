@@ -19,7 +19,7 @@ h4 {
 }
 
 span {
-    font-weight: 600;
+    font-weight: 450;
 }
 
 .name {
@@ -32,4 +32,36 @@ span {
 
 p {
     margin: 0;
+}
+
+/* .stats .container {
+    display: flex;
+} */
+
+.stats .name {
+    margin-right: 10px;
+}
+
+.stats, .abilities, .moves {
+    overflow-y: scroll;
+    margin: 2px 14px;
+}
+
+.statsContainer {
+    margin-bottom: 4px;
+}
+
+.container {
+    display: flex;
+    max-height: 300px;
+}
+
+.details {
+    display: flex;
+}
+
+img {
+    max-width:100%;
+    max-height:100%;
+    object-fit: contain;
 }
